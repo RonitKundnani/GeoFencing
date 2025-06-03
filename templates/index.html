@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTracker Pro - Geofencing Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="logo-text">GeoTracker Pro</div>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item active">
+                    <i class="fas fa-th-large"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="locations.html" class="nav-item">
+                    <i class="fas fa-map-pin"></i>
+                    <span>Locations</span>
+                </a>
+                <a href="geofences.html" class="nav-item">
+                    <i class="fas fa-draw-polygon"></i>
+                    <span>Geofence Management</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="alerts.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="header">
+                <h1 class="header-title">Dashboard</h1>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <div class="user-avatar">JD</div>
+                        <div class="user-info">
+                            <div class="user-name">John Admin</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: var(--gray-400); font-size: 12px;"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Dashboard Tab -->
+                <div class="tab-content active" id="dashboard">
+                    <div class="dashboard-grid">
+                        <!-- Map Container -->
+                        <div class="map-container">
+                            <div id="Map"></div>
+                            <div class="map-overlay">
+                                <button class="map-control" id="centerMap" title="Center Map">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                                <button class="map-control" id="fullscreen" title="Fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button class="map-control" id="drawGeofence" title="Draw Geofence">
+                                    <i class="fas fa-draw-polygon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel -->
+                        <div class="right-panel">
+                            <!-- Location Status -->
+                            <div class="panel-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-location-arrow"></i>
+                                        Location Status
+                                    </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="status-toggle">
+                                        <div class="status-info">
+                                            <div class="status-dot"></div>
+                                            <span style="font-size: 14px; color: var(--gray-700);">Location Sharing</span>
+                                        </div>
+                                        <div class="toggle-switch" id="locationToggle">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="current-status">
+                                        <div class="status-title">Inside Geofence</div>
+                                        <div class="status-location">Campus Area - Building A</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Alerts -->
+                            <div class="panel-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-bell"></i>
+                                        Recent Alerts
+                                    </h3>
+                                </div>
+                                <div class="card-content" style="max-height: 300px; overflow-y: auto;">
+                                    <div class="alerts-container">
+                                        <div class="alert-item">
+                                            <div class="alert-icon alert-enter">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                            </div>
+                                            <div class="alert-details">
+                                                <div class="alert-user">Sarah Wilson entered</div>
+                                                <div class="alert-meta">Campus Area</div>
+                                            </div>
+                                            <div class="alert-time">2m ago</div>
+                                        </div>
+                                        
+                                        <div class="alert-item">
+                                            <div class="alert-icon alert-exit">
+                                                <i class="fas fa-sign-out-alt"></i>
+                                            </div>
+                                            <div class="alert-details">
+                                                <div class="alert-user">Mike Johnson exited</div>
+                                                <div class="alert-meta">Office Zone</div>
+                                            </div>
+                                            <div class="alert-time">5m ago</div>
+                                        </div>
+                                        
+                                        <div class="alert-item">
+                                            <div class="alert-icon alert-enter">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                            </div>
+                                            <div class="alert-details">
+                                                <div class="alert-user">Emma Davis entered</div>
+                                                <div class="alert-meta">Parking Area</div>
+                                            </div>
+                                            <div class="alert-time">12m ago</div>
+                                        </div>
+                                        
+                                        <div class="alert-item">
+                                            <div class="alert-icon alert-exit">
+                                                <i class="fas fa-sign-out-alt"></i>
+                                            </div>
+                                            <div class="alert-details">
+                                                <div class="alert-user">Alex Brown exited</div>
+                                                <div class="alert-meta">Security Zone</div>
+                                            </div>
+                                            <div class="alert-time">18m ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Active Users -->
+                            <div class="panel-card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-users"></i>
+                                        Active Users (4)
+                                    </h3>
+                                </div>
+                                <div class="card-content" style="max-height: 300px; overflow-y: auto;">
+                                    <div class="users-container">
+                                        <div class="user-item">
+                                            <div class="user-status-dot user-inside">SW</div>
+                                            <div class="user-details">
+                                                <div class="user-name-item">Sarah Wilson</div>
+                                                <div class="user-location">Inside Campus Area</div>
+                                            </div>
+                                            <div class="user-online"></div>
+                                        </div>
+                                        
+                                        <div class="user-item">
+                                            <div class="user-status-dot user-outside">MJ</div>
+                                            <div class="user-details">
+                                                <div class="user-name-item">Mike Johnson</div>
+                                                <div class="user-location">Outside all zones</div>
+                                            </div>
+                                            <div class="user-online"></div>
+                                        </div>
+                                        
+                                        <div class="user-item">
+                                            <div class="user-status-dot user-inside">ED</div>
+                                            <div class="user-details">
+                                                <div class="user-name-item">Emma Davis</div>
+                                                <div class="user-location">Inside Parking Area</div>
+                                            </div>
+                                            <div class="user-online"></div>
+                                        </div>
+                                        
+                                        <div class="user-item">
+                                            <div class="user-status-dot user-outside">AB</div>
+                                            <div class="user-details">
+                                                <div class="user-name-item">Alex Brown</div>
+                                                <div class="user-location">Outside all zones</div>
+                                            </div>
+                                            <div class="user-online"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Tabs -->
+                <div class="tab-content" id="locations">
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-map-pin"></i>
+                                Location Management
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-map" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                                    <p>Location management interface</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="geofences">
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-draw-polygon"></i>
+                                Geofence Management
+                            </h3>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Create New
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-draw-polygon" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                                    <p>Geofence management tools</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="users">
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-users"></i>
+                                User Management
+                            </h3>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Add User
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-users" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                                    <p>User management interface</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="alerts">
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-bell"></i>
+                                Alert History
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                                <div style="text-align: center;">
+                                    <i class="fas fa-history" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                                    <p>Alert history and logs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="settings">
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                                <!-- Add this before the closing </body> tag -->
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+                                <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+                                </body>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="settings">
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="height: 400px; display: flex; align-items: center; justify-content: center; color: var(--gray-500);">
+                                

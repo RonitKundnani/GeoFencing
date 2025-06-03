@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTracker Pro - Geofence Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="../static/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="logo-text">GeoTracker Pro</div>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="locations.html" class="nav-item">
+                    <i class="fas fa-map-pin"></i>
+                    <span>Locations</span>
+                </a>
+                <a href="geofences.html" class="nav-item active">
+                    <i class="fas fa-draw-polygon"></i>
+                    <span>Geofence Management</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="alerts.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="header">
+                <h1 class="header-title">Geofence Management</h1>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <div class="user-avatar">JD</div>
+                        <div class="user-info">
+                            <div class="user-name">John Admin</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: var(--gray-400); font-size: 12px;"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="panel-card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-draw-polygon"></i>
+                            Geofence Management
+                        </h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Create New
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div id="geofenceMap" style="height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+</html> 

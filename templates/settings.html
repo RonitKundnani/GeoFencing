@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTracker Pro - Settings</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="logo-text">GeoTracker Pro</div>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="locations.html" class="nav-item">
+                    <i class="fas fa-map-pin"></i>
+                    <span>Locations</span>
+                </a>
+                <a href="geofences.html" class="nav-item">
+                    <i class="fas fa-draw-polygon"></i>
+                    <span>Geofence Management</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="alerts.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Alerts</span>
+                </a>
+                <a href="settings.html" class="nav-item active">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="header">
+                <h1 class="header-title">Settings</h1>
+                <div class="header-actions">
+                    <div class="user-menu">
+                        <div class="user-avatar">JD</div>
+                        <div class="user-info">
+                            <div class="user-name">John Admin</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: var(--gray-400); font-size: 12px;"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="settings-grid">
+                    <!-- General Settings -->
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-sliders-h"></i>
+                                General Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="appName">Application Name</label>
+                                    <input type="text" id="appName" value="GeoTracker Pro" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="timezone">Default Timezone</label>
+                                    <select id="timezone" class="form-control">
+                                        <option value="utc">UTC</option>
+                                        <option value="est" selected>Eastern Time (EST)</option>
+                                        <option value="cst">Central Time (CST)</option>
+                                        <option value="mst">Mountain Time (MST)</option>
+                                        <option value="pst">Pacific Time (PST)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dateFormat">Date Format</label>
+                                    <select id="dateFormat" class="form-control">
+                                        <option value="mdy" selected>MM/DD/YYYY</option>
+                                        <option value="dmy">DD/MM/YYYY</option>
+                                        <option value="ymd">YYYY/MM/DD</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="distanceUnit">Distance Unit</label>
+                                    <select id="distanceUnit" class="form-control">
+                                        <option value="miles">Miles</option>
+                                        <option value="km" selected>Kilometers</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Theme</label>
+                                    <div class="theme-options">
+                                        <div class="theme-option active">
+                                            <div class="theme-preview light-theme"></div>
+                                            <span>Light</span>
+                                        </div>
+                                        <div class="theme-option">
+                                            <div class="theme-preview dark-theme"></div>
+                                            <span>Dark</span>
+                                        </div>
+                                        <div class="theme-option">
+                                            <div class="theme-preview system-theme"></div>
+                                            <span>System</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notification Settings -->
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-bell"></i>
+                                Notification Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <div class="setting-toggle">
+                                        <div class="setting-label">Email Notifications</div>
+                                        <div class="toggle-switch active">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="setting-toggle">
+                                        <div class="setting-label">Push Notifications</div>
+                                        <div class="toggle-switch active">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="setting-toggle">
+                                        <div class="setting-label">SMS Notifications</div>
+                                        <div class="toggle-switch">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Notification Events</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" checked>
+                                            <span>Geofence Entry</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" checked>
+                                            <span>Geofence Exit</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" checked>
+                                            <span>User Added/Removed</span>
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox">
+                                            <span>System Updates</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Settings -->
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-map"></i>
+                                Map Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="mapProvider">Map Provider</label>
+                                    <select id="mapProvider" class="form-control">
+                                        <option value="osm" selected>OpenStreetMap</option>
+                                        <option value="google">Google Maps</option>
+                                        <option value="mapbox">Mapbox</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="defaultLocation">Default Location</label>
+                                    <input type="text" id="defaultLocation" value="51.505, -0.09" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="defaultZoom">Default Zoom Level</label>
+                                    <select id="defaultZoom" class="form-control">
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13" selected>13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="setting-toggle">
+                                        <div class="setting-label">Show Traffic Layer</div>
+                                        <div class="toggle-switch">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="setting-toggle">
+                                        <div class="setting-label">Show Points of Interest</div>
+                                        <div class="toggle-switch active">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Account Settings -->
+                    <div class="panel-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-cog"></i>
+                                Account Settings
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" value="john@example.com" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" value="********" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="setting-toggle">
+                                        <div class="setting-label">Two-Factor Authentication</div>
+                                        <div class="toggle-switch active">
+                                            <div class="toggle-knob"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
